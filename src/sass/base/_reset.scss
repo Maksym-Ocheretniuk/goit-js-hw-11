@@ -1,0 +1,46 @@
+/* глобальне скидання стилів */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Елементи-посилання "а" скидуємо до дефолтних стилів */
+a,
+a:focus,
+a:hover,
+a:active,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* прибираємо підкреслення посилання */
+.link {
+  text-decoration: none;
+}
+
+/* прибираємо маркери списку */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Робота з картинками */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

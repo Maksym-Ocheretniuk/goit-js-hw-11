@@ -1,0 +1,38 @@
+.form-section {
+  background-color: rgb(72, 89, 174);
+}
+
+.container-form {
+  justify-items: center;
+}
+
+.search-form {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 700px;
+
+  margin: 0 auto;
+}
+
+.input__search {
+  font-size: 13px;
+  font-weight: 500;
+
+  // height: 30px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+}
+
+.btn__search {
+  font-size: 13px;
+  font-weight: 600;
+
+  // height: 30px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+}
