@@ -1,5 +1,5 @@
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import axios from 'axios';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import axios from 'axios';
 
 const refs = {
   formEl: document.querySelector('.search-form'),
@@ -17,11 +17,24 @@ function onSearchImg(evt) {
 
 // https://pixabay.com/api/?key=36649716-ae2071ec6e2a5083f2a16f94e&q=cat&image_type=photo&orientation=horizontal&safesearch=true
 
-const BASE_URL = 'https://pixabay.com/api/';
+const URL = 'https://pixabay.com/api/';
 const API_KEY = '36649716-ae2071ec6e2a5083f2a16f94e';
-const searchParams = new URLSearchParams({
-  fields: 'q,image_type,orientation,safesearch,',
-});
+// const q = 'cat';
+const IMG_TYPE = 'photo';
+const ORIENTATION = 'horizontal';
+const SAFE_SEARCH = 'true';
+
+function getImg(query) {
+  return fetch(
+    `${URL}?key=${API_KEY}&q=${query}&image_type=${IMG_TYPE}&orientation=${ORIENTATION}&safesearch=${SAFE_SEARCH}`
+  ).then(res => res.json());
+}
+
+getImg('cat').then(result => console.log(result));
+
+// const searchParams = new URLSearchParams({
+//   fields: 'q,image_type,orientation,safesearch,',
+// });
 
 // const fetchSearchCountries = q =>
 //   fetch(`${BASE_URL}/${countryName}?${searchParams}`).then(response => {
