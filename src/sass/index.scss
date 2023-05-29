@@ -1,11 +1,10 @@
 @import './common';
-// @import './example';
 
 // base style
 @import './base/base';
 @import './base/reset';
-@import './base/section';
-@import './base/container';
 
+// styles
 @import './form';
-@import './result';
+@import './gallery';
+@import './mixin';
