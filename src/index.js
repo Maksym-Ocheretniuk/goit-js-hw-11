@@ -35,8 +35,8 @@ const loadMorePhotos = async function (entries, observer) {
         refs.galleryEl.insertAdjacentHTML('beforeend', markup);
 
         if (pixaby.hasMorePhotos) {
-          const lastItem = document.querySelector('.gallery a:last-child');
-          observer.observe(lastItem);
+          const lastItemEl = document.querySelector('.gallery a:last-child');
+          observer.observe(lastItemEl);
         } else
           Notify.info(
             "We're sorry, but you've reached the end of search results.",
@@ -98,8 +98,8 @@ const onSearchImg = async event => {
     Notify.success(`Hooray! We found ${total} images.`, notifyInit);
 
     if (pixaby.hasMorePhotos) {
-      const lastItem = document.querySelector('.gallery a:last-child');
-      observer.observe(lastItem);
+      const lastItemEl = document.querySelector('.gallery a:last-child');
+      observer.observe(lastItemEl);
     }
 
     modalLightboxGallery.refresh();
