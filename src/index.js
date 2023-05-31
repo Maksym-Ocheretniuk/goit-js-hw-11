@@ -11,6 +11,7 @@ import { notifyInit } from './app/notifyInit';
 
 const modalLightboxGallery = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
+  captionsData: 'alt',
 });
 
 const pixaby = new PixabayAPI();
