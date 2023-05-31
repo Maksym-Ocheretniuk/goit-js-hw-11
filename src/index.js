@@ -35,14 +35,29 @@ const loadMorePhotos = async function (entries, observer) {
         const markup = createMarkup(hits);
         refs.galleryEl.insertAdjacentHTML('beforeend', markup);
 
+        // try {
+        //   if (pixaby.hasMorePhotos) {
+        //     const lastItemEl = await document.querySelector(
+        //       '.gallery a:last-child'
+        //     );
+        //     observer.observe(lastItemEl);
+        //   }
+        // } catch (error) {
+        //   Notify.info(
+        //     "We're sorry, but you've reached the end of search results.",
+        //     notifyInit
+        //   );
+        // }
+
         if (pixaby.hasMorePhotos) {
           const lastItemEl = document.querySelector('.gallery a:last-child');
           observer.observe(lastItemEl);
-        } else
-          Notify.info(
+        } else {
+          return Notify.info(
             "We're sorry, but you've reached the end of search results.",
             notifyInit
           );
+        }
 
         modalLightboxGallery.refresh();
       } catch (error) {
@@ -72,7 +87,7 @@ const onSearchImg = async event => {
     clearPage();
     Notify.info('Enter data to search!', notifyInit);
 
-    refs.inputEl.placeholder = 'What`re we looking for?';
+    refs.inputEl.placeholder = "Let's try again...";
     return;
   }
 
@@ -85,7 +100,7 @@ const onSearchImg = async event => {
 
     if (hits.length === 0) {
       Notify.failure(
-        `Sorry, there are no images matching your ${search_query}. Please try again.`,
+        `Sorry, there are no images matching your "${search_query}". Please try again.`,
         notifyInit
       );
 
@@ -102,6 +117,12 @@ const onSearchImg = async event => {
       const lastItemEl = document.querySelector('.gallery a:last-child');
       observer.observe(lastItemEl);
     }
+    // else {
+    //   Notify.info(
+    //     "We're sorry, but you've reached the end of search results.",
+    //     notifyInit
+    //   );
+    // }
 
     modalLightboxGallery.refresh();
   } catch (error) {
