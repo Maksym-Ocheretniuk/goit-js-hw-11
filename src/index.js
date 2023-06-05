@@ -31,25 +31,11 @@ const loadMorePhotos = async function (entries, observer) {
       pixaby.incrementPage();
 
       try {
-        const { hits } = await pixaby.getPhotos();
+        const { hits, page } = await pixaby.getPhotos();
         const markup = createMarkup(hits);
         refs.galleryEl.insertAdjacentHTML('beforeend', markup);
 
-        // try {
-        //   if (pixaby.hasMorePhotos) {
-        //     const lastItemEl = await document.querySelector(
-        //       '.gallery a:last-child'
-        //     );
-        //     observer.observe(lastItemEl);
-        //   }
-        // } catch (error) {
-        //   Notify.info(
-        //     "We're sorry, but you've reached the end of search results.",
-        //     notifyInit
-        //   );
-        // }
-
-        if (pixaby.hasMorePhotos) {
+        if (pixaby.hasMorePhotos()) {
           const lastItemEl = document.querySelector('.gallery a:last-child');
           observer.observe(lastItemEl);
         } else {
@@ -96,7 +82,7 @@ const onSearchImg = async event => {
   clearPage();
 
   try {
-    const { hits, total } = await pixaby.getPhotos();
+    const { hits, total, totalHits } = await pixaby.getPhotos();
 
     if (hits.length === 0) {
       Notify.failure(
@@ -111,18 +97,12 @@ const onSearchImg = async event => {
     refs.galleryEl.insertAdjacentHTML('beforeend', markup);
 
     pixaby.setTotal(total);
-    Notify.success(`Hooray! We found ${total} images.`, notifyInit);
+    Notify.success(`Hooray! We found ${totalHits} images.`, notifyInit);
 
-    if (pixaby.hasMorePhotos) {
+    if (pixaby.hasMorePhotos()) {
       const lastItemEl = document.querySelector('.gallery a:last-child');
       observer.observe(lastItemEl);
     }
-    // else {
-    //   Notify.info(
-    //     "We're sorry, but you've reached the end of search results.",
-    //     notifyInit
-    //   );
-    // }
 
     modalLightboxGallery.refresh();
   } catch (error) {
